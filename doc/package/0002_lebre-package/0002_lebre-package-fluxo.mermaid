@@ -1,0 +1,13 @@
+flowchart TD
+    C["Catálogos System e Example"] --> R["Repository"]
+    P["Pacotes solicitados"] --> S["Service\Package::resolve()"]
+    S --> M["Mapping"]
+    R -->|Manifestos e raízes| M
+    M -->|Coleta manifestos e conta referências| D["Dependency"]
+    D -->|Ordena os pacotes| A{"Resolução aprovada?"}
+    A -->|Não| E["Consultar erros da resolução"]
+    A -->|Sim| L["Plano aprovado: mapping, dependency e autoload"]
+    L --> I["Consultar o plano"]
+    L --> X["Service\Package::load(plano)"]
+    X --> U["Autoload executa require_once"]
+    U --> O["Resposta com os pacotes do plano ou erro"]

@@ -1,0 +1,34 @@
+sequenceDiagram
+    actor C as Chamador
+    participant S as Service\Package
+    participant M as Mapping
+    participant R as Repository
+    participant A as Autoload
+
+    C->>S: Inicializa com os catálogos
+    S->>R: Registra os pacotes dos catálogos
+
+    C->>S: resolve(pacotes)
+    S->>M: resolve(pacotes)
+    M->>R: Consulta os manifestos
+    R-->>M: Manifestos ou falha
+
+    alt Coleta aprovada
+        M->>M: Ordena os pacotes com Dependency
+        opt Ordenação aprovada
+            M->>R: Consulta as raízes dos pacotes
+            R-->>M: Raízes dos catálogos
+            M->>M: Monta a lista de arquivos
+        end
+    end
+
+    M-->>S: Plano ou erro
+    S-->>C: Resposta da resolução
+
+    opt Plano aprovado e carregamento solicitado
+        C->>S: load(plano)
+        S->>A: load(plano)
+        A->>A: Processa os arquivos com require_once
+        A-->>S: Pacotes do plano ou erro
+        S-->>C: Resposta do carregamento
+    end

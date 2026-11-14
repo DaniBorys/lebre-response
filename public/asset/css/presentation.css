@@ -1,0 +1,75 @@
+/* Apresentação temporária do LEBRE. Versão 1.1.0 — 2026-11-01. */
+:root {
+    color-scheme: dark;
+    --background: #0b0f14;
+    --panel: #101419;
+    --hover: #19212a;
+    --border: #303944;
+    --text: #d7dee7;
+    --muted: #a6b0be;
+    --green: #7ee2a8;
+    --blue: #8cb4dc;
+    --red: #ff9292;
+    --font: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--background); color: var(--text); font: 14px/1.6 var(--font); }
+a { color: var(--blue); }
+button, code, pre { font: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; max-width: 1600px; margin: 0 auto; padding: 24px; align-items: start; }
+.sidebar { position: sticky; top: 24px; padding: 20px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+.brand { color: var(--green); font-size: 22px; font-weight: 700; text-decoration: none; }
+.sidebar-caption { margin: 6px 0 24px; color: var(--muted); font-size: 12px; }
+.sidebar nav { display: grid; gap: 6px; }
+.sidebar nav a { padding: 10px 12px; border: 1px solid transparent; border-radius: 5px; text-decoration: none; }
+.sidebar nav a:hover { background: var(--hover); }
+.sidebar nav a[aria-current="page"] { background: #14251d; border-color: #31513e; color: var(--green); }
+.content { min-width: 0; }
+.page-header { margin-bottom: 24px; }
+.eyebrow { color: var(--green); font-size: 11px; letter-spacing: 0.12em; }
+h1 { margin: 6px 0; font-size: 26px; }
+h2 { margin: 0 0 16px; font-size: 16px; }
+.page-header p, .muted { color: var(--muted); }
+.panel { margin-bottom: 20px; padding: 20px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+.cards { display: grid; gap: 12px; }
+.card { display: grid; gap: 6px; padding: 16px; border: 1px solid var(--border); border-radius: 5px; text-decoration: none; }
+.card:hover { background: var(--hover); }
+.card strong { color: var(--green); }
+.card span { color: var(--muted); }
+.table-wrapper { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+thead th { color: var(--muted); font-size: 12px; }
+tbody th { width: 30%; color: var(--blue); font-weight: 400; }
+td code { white-space: pre-wrap; overflow-wrap: anywhere; }
+tbody tr:last-child > * { border-bottom: 0; }
+summary { color: var(--blue); cursor: pointer; }
+.panel > details { margin-top: 16px; }
+.toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+button { padding: 8px 12px; background: transparent; border: 1px solid var(--border); border-radius: 5px; color: var(--blue); cursor: pointer; }
+button:hover { background: var(--hover); }
+pre { margin: 16px 0 0; padding: 16px; overflow: auto; background: var(--background); border: 1px solid var(--border); border-radius: 5px; white-space: pre; }
+.notice-error { color: var(--red); }
+.notice-error pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+select {
+    max-width: 100%;
+    padding: 8px 12px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text);
+    font: inherit;
+}
+
+select:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
+}
+@media (max-width: 800px) {
+    .layout { grid-template-columns: minmax(0, 1fr); padding: 12px; gap: 16px; }
+    .sidebar { position: static; }
+    .sidebar nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .panel { padding: 16px; }
+    h1 { font-size: 22px; }
+}
